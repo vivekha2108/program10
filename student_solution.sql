@@ -1,21 +1,17 @@
 USE CollegeDB;
 
--- LEFT JOIN
 SELECT
     s.StudentID,
     s.StudentName,
-    d.DepartmentID,
     d.DepartmentName
-FROM Student s
-LEFT JOIN Department d
+FROM Student AS s
+LEFT JOIN Department AS d
 ON s.DepartmentID = d.DepartmentID;
 
--- RIGHT JOIN
 SELECT
     s.StudentID,
     s.StudentName,
-    d.DepartmentID,
     d.DepartmentName
-FROM Student s
-RIGHT JOIN Department d
+FROM Student AS s
+RIGHT JOIN Department AS d
 ON s.DepartmentID = d.DepartmentID;
