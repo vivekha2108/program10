@@ -1,40 +1,32 @@
-USE CollegeDB;
-
-CREATE TABLE Department (
-    DepartmentID INT PRIMARY KEY,
-    DepartmentName VARCHAR(50)
+USE vivekha;
+CREATE TABLE Course(
+CourseID INT,
+CourseName VARCHAR(30),
+Credits INT 
 );
-
-CREATE TABLE Student (
-    StudentID INT PRIMARY KEY,
-    StudentName VARCHAR(50),
-    DepartmentID INT
+INSERT INTO Course VALUES
+(201,'Database system',4),
+(202,'Data Structure',3),
+(203,'Mathematics',4);
+CREATE TABLE Enrollment(
+EnrollmentID INT,
+StudentID INT,
+CourseID INT 
 );
-
-INSERT INTO Department (DepartmentID, DepartmentName) VALUES
-(1, 'Computer Science'),
-(2, 'Mechanical'),
-(3, 'Electronics');
-
-INSERT INTO Student (StudentID, StudentName, DepartmentID) VALUES
-(101, 'Arun', 1),
-(102, 'Priya', 2),
-(103, 'Karthik', NULL);
-
--- LEFT JOIN
-SELECT
-    s.StudentID,
-    s.StudentName,
-    d.DepartmentName
-FROM Student s
-LEFT JOIN Department d
-ON s.DepartmentID = d.DepartmentID;
-
--- RIGHT JOIN
-SELECT
-    s.StudentID,
-    s.StudentName,
-    d.DepartmentName
-FROM Student s
-RIGHT JOIN Department d
-ON s.DepartmentID = d.DepartmentID;
+INSERT INTO Enrollment VALUES
+(1,1001,201),
+(2,1001,202),
+(3,1002,203),
+(4,1003,201);
+SELECT Course.CourseID,
+  Course.CourseName,
+  Enrollment.StudentID
+FROM Course
+LEFT JOIN Enrollment
+ON Course.CourseID=Enrollment.CourseID;
+SELECT Course.CourseID,
+  Course.CourseName,
+  Enrollment.StudentID
+FROM Course
+RIGHT JOIN Enrollment
+ON Course.CourseID=Enrollment.CourseID;
